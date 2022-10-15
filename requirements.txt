@@ -1,2 +1,11 @@
-ambient-api
-requests
+# This file created via `pip freeze`
+
+# Primary imports
+ambient-api==1.5.6
+requests==2.28.1
+
+# Dependencies
+certifi==2022.9.24
+charset-normalizer==2.1.1
+idna==3.4
+urllib3==1.26.12
