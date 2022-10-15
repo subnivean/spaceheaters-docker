@@ -32,3 +32,6 @@ def send(subject, emailtext, alert=False):
 
     session.sendmail(GMAIL_USERNAME, recipient, headers + "\r\n\r\n" + emailtext)
     session.quit()
+
+if __name__ == "__main__":
+    send("Test subject from app", "Test body")
