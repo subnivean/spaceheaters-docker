@@ -2,3 +2,4 @@ gsecrets.py
 awsecrets.py
 __pycache__
 .devcontainer
+data/
