@@ -10,7 +10,7 @@ VTEXTADDR = gsecrets.vtextaddr
 EMAILADDR = gsecrets.emailaddr
 
 def send(subject, emailtext, alert=False):
-    
+
     if alert is False:
         recipient = EMAILADDR
     else:
@@ -22,13 +22,13 @@ def send(subject, emailtext, alert=False):
                "MIME-Version: 1.0",
                "Content-Type: text/html"]
     headers = "\r\n".join(headers)
-    
+
     session = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
-    
+
     session.ehlo()
     session.starttls()
-    
+
     session.login(GMAIL_USERNAME, GMAIL_PASSWORD)
-    
+
     session.sendmail(GMAIL_USERNAME, recipient, headers + "\r\n\r\n" + emailtext)
     session.quit()
