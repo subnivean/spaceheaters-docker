@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 from requests.exceptions import ConnectionError
 import sys
@@ -37,8 +38,20 @@ class WeatherData():
 
         self.last_data = ws.last_data
 
+        for key, value in self.last_data.items():
+            setattr(self, key, value)
+
+        # Fix a few attributes
+        self.dateutc = datetime.fromtimestamp(self.dateutc / 1000)
+        self.date = datetime.fromisoformat(self.date.split('.')[0])
+        self.lastRain = datetime.fromisoformat(self.lastRain.split('.')[0])
+
     def get_reading(self, propname):
         return self.last_data[propname]
+
+    @property
+    def sensor_names(self):
+        print(list(self.last_data.keys()))
 
 
 if __name__ == "__main__":
