@@ -4,3 +4,4 @@ __pycache__
 .devcontainer
 id_rsa_rpi
 data/
+stoptime.json

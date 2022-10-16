@@ -27,8 +27,7 @@ class SmartPlug():
 
     @property
     def is_off(self):
-        res = requests.post(self.url + POWERCHK)
-        return 'OFF' in res.content.decode('utf-8')
+        return not self.is_on
 
 if __name__ == "__main__":
     import time
