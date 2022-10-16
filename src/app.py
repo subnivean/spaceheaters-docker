@@ -33,6 +33,19 @@ MAXMINUTES = 90
 
 now = datetime.now()
 
+try:
+    with open(STOPTIMEFILENAME) as fh:
+        stopdata = json.load(fh)
+except FileNotFoundError:
+    # File won't be there the first time this is run
+    stopdata = {'stoptime': "1970-01-01T00:00:00"}
+
+stoptime = datetime.fromisoformat(stopdata['stoptime'])
+if now < stoptime:
+    minutesleft = int((stoptime - now).seconds / 60)
+    print(f"Waiting until {stoptime.isoformat()=}, {minutesleft=}")
+    sys.exit()
+
 hhpdata = HeatPumpData(HPNAME, HPIP)
 hhpwatts = hhpdata.watts
 
@@ -42,10 +55,11 @@ intemp = awx1.tempinf
 
 print(f"{hhpwatts=}, {outtemp=}, {intemp=}")
 
+
 if (hhpwatts < LOWWATTS and outtemp < STARTTEMP):
     # onminutes = min(M * outtemp + B, MAXMINUTES)
     # DEV TESTING
-    onminutes = 60
+    onminutes = 2
     stoptime = (now + timedelta(minutes=onminutes)).isoformat()
     print(f"Turn on the space heaters for {onminutes=}, until {stoptime=}")
 
@@ -53,12 +67,12 @@ if (hhpwatts < LOWWATTS and outtemp < STARTTEMP):
         print(f"Turning on space heater {ssip=}")
         pass
 
-    stoptime = {'starttime': now.isoformat(),
+    stopdata = {'starttime': now.isoformat(),
                 'stoptime': stoptime, 'onminutes': onminutes}
-    stoptime['plugs'] = SSIPS
+    stopdata['plugs'] = SSIPS
 
     with open(STOPTIMEFILENAME, 'w') as fh:
-        json.dump(stoptime, fh, sort_keys=True, indent=4)
+        json.dump(stopdata, fh, sort_keys=True, indent=4)
 
 
 else:
