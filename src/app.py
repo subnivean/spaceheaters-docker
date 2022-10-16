@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 import json
-from pathlib import Path
 import sys
 
 from heatpump import HeatPumpData
@@ -54,7 +53,6 @@ outtemp = awx1.tempf
 intemp = awx1.tempinf
 
 print(f"{hhpwatts=}, {outtemp=}, {intemp=}")
-
 
 if (hhpwatts < LOWWATTS and outtemp < STARTTEMP):
     # onminutes = min(M * outtemp + B, MAXMINUTES)
