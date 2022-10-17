@@ -15,7 +15,7 @@ from ambientweatherdata import WeatherData
 HPNAME = "house"
 HPIP = "192.168.1.9"
 WXSTATIONNUM = 1
-STOPTIMEFILENAME = "stoptime.json"
+STOPTIMEFILENAME = "/data/stoptime.json"
 
 SSIPS = sys.argv[1:]
 
