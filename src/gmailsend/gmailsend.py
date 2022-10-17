@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import smtplib
-import gsecrets
+from . import gsecrets
+# import gsecrets
 
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 587

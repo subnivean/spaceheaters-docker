@@ -1,3 +1,6 @@
 [submodule "src/ambientweatherdata"]
 	path = src/ambientweatherdata
 	url = https://github.com/subnivean/ambientweatherdata.git
+[submodule "src/cfsmartplug"]
+	path = src/cfsmartplug
+	url = https://github.com/subnivean/cfsmartplug.git
