@@ -1,0 +1,3 @@
+[submodule "src/ambientweatherdata"]
+	path = src/ambientweatherdata
+	url = https://github.com/subnivean/ambientweatherdata.git

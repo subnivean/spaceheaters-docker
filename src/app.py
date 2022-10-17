@@ -3,7 +3,8 @@ import json
 import sys
 
 from heatpump import HeatPumpData
-from ambientweather import WeatherData
+#from ambientweather.ambientweather import WeatherData
+from ambientweatherdata import WeatherData
 
 # Looks at the outside temperature combined with the heat pump wattage,
 # and adds BTUs to the system by turning on space heaters (through
