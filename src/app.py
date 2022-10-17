@@ -17,7 +17,7 @@ HPIP = "192.168.1.9"
 WXSTATIONNUM = 1
 STOPTIMEFILENAME = "stoptime.json"
 
-SSIPS = [int(plugnum) for plugnum in sys.argv[1:]]
+SSIPS = sys.argv[1:]
 
 # Equation: y = -5.0(x) - 5.0; gives 10 minutes at -3F, 60 minutes at -13F
 M = -5.0
