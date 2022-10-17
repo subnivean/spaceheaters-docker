@@ -7,3 +7,6 @@
 [submodule "src/heatpumpdata"]
 	path = src/heatpumpdata
 	url = https://github.com/subnivean/heatpumpdata.git
+[submodule "src/gmailsend"]
+	path = src/gmailsend
+	url = https://github.com/subnivean/gmailsend.git
