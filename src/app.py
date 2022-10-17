@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 import json
 import sys
 
-from heatpump import HeatPumpData
+from heatpumpdata import HeatPumpData
 #from ambientweather.ambientweather import WeatherData
 from ambientweatherdata import WeatherData
 

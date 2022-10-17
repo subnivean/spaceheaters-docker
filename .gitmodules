@@ -4,3 +4,6 @@
 [submodule "src/cfsmartplug"]
 	path = src/cfsmartplug
 	url = https://github.com/subnivean/cfsmartplug.git
+[submodule "src/heatpumpdata"]
+	path = src/heatpumpdata
+	url = https://github.com/subnivean/heatpumpdata.git
