@@ -47,15 +47,15 @@ if now < stoptime:
     sys.exit()
 
 hhpdata = HeatPumpData(HPNAME, HPIP)
-hhpwatts = hhpdata.watts
+hpwatts = hhpdata.watts
 
 awx1 = WeatherData(stationnum=WXSTATIONNUM)
 outtemp = awx1.tempf
 intemp = awx1.tempinf
 
-print(f"{hhpwatts=}, {outtemp=}, {intemp=}")
+print(f"{hpwatts=}, {outtemp=}, {intemp=}")
 
-if (hhpwatts < LOWWATTS and outtemp < STARTTEMP):
+if (hpwatts < LOWWATTS and outtemp < STARTTEMP):
     # onminutes = min(M * outtemp + B, MAXMINUTES)
     # DEV TESTING
     onminutes = 2
@@ -69,6 +69,9 @@ if (hhpwatts < LOWWATTS and outtemp < STARTTEMP):
     stopdata = {'starttime': now.isoformat(),
                 'stoptime': stoptime, 'onminutes': onminutes}
     stopdata['plugs'] = SSIPS
+    stopdata['outtemp'] = outtemp
+    stopdata['intemp'] = intemp
+    stopdata['hpwatts'] = hpwatts
 
     with open(STOPTIMEFILENAME, 'w') as fh:
         json.dump(stopdata, fh, sort_keys=True, indent=4)
