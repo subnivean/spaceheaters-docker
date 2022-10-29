@@ -5,7 +5,6 @@ import pandas as pd
 
 filename = "/ctdata/house_heat_pump_ct_readings.log"
 COSTPERKWH = 0.177
-REFRESH = 60 * 1000  # In milliseconds
 
 app = dash.Dash(__name__)
 
@@ -40,14 +39,9 @@ app.layout = html.Div(
                     className="card",
                 ),
 
-                dcc.Interval(
-                    id="interval-component",
-                    interval=REFRESH,  # in milliseconds
-                    n_intervals=0
-                ),
 
                 dcc.Interval(
-                    id="countdown-component",
+                    id="countdown_component",
                     interval=10000,  # in milliseconds
                     n_intervals=0
                 )
@@ -60,10 +54,12 @@ app.layout = html.Div(
 @callback(
     Output("ct3-chart", "figure"),
     Output("total-kwh", "children"),
-    Input("interval-component", "n_intervals"),
-    Input("days-to-show", "value")
+    Input("countdown_component", "n_intervals"),
+    Input("days-to-show", "value"),
+    Input("ct3-chart", "figure"),
+    Input("total-kwh", "children"),
 )
-def update_charts(n, daystoshow):
+def update_charts(n, daystoshow, currentfigure, currentdatastr):
     """Updates chart data on events.
 
     Args:
@@ -75,6 +71,9 @@ def update_charts(n, daystoshow):
     Returns:
         See `Output()`s in callback decorator.
     """
+    countdown = 60 - ((n * 10) % 60)
+    if countdown != 60:
+        return currentfigure, currentdatastr
 
     # Filter data when showing many days' worth to speed up
     # plotting. Also applies to calculations (which don't seem
@@ -130,7 +129,7 @@ def update_charts(n, daystoshow):
 
 @callback(
     Output("time-to-next-refresh", "children"),
-    Input("countdown-component", "n_intervals")
+    Input("countdown_component", "n_intervals")
 )
 def update_time_to_next_refresh(n):
     countdown = 60 - ((n * 10) % 60)
