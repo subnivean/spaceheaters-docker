@@ -10,6 +10,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 WORKDIR /app
 COPY ./src .
 
+COPY ./bash.bashrc /root/.bashrc
+
 RUN mkdir /data
 
 #CMD ["python", "app.py"]
