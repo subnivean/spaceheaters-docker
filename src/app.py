@@ -13,7 +13,7 @@ from ambientweatherdata import WeatherData
 
 # Smart switch IP addresses
 HPNAME = "house"
-HPIP = "192.168.1.9"
+HPIP = "192.168.1.10"
 WXSTATIONNUM = 1
 STOPTIMEFILENAME = "/data/stoptime.json"
 
