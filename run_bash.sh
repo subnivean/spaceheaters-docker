@@ -6,5 +6,5 @@ docker run --rm -it \
   --privileged \
   -v $SCRIPT_PATH/data:/data \
   -v $SCRIPT_PATH/src:/app \
-  spaceheaters /bin/bash
+  allinone-py311 /bin/bash
 
